@@ -23,7 +23,7 @@ function App() {
       <div className="loader-container">
         <div className="loader">
           <div className="loader-bar"></div>
-          <div className="loader-text">GM</div>
+          <div className="loader-text">BS</div>
         </div>
       </div>
     );

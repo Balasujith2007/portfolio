@@ -397,3 +397,185 @@ section { padding:0; }
     .about-stats { grid-template-columns:repeat(2,1fr); }
     .hero-buttons { flex-direction:column; align-items:center; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   PREMIUM PROFILE FRAME UPGRADE — Bala Sujith Portfolio
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Glassmorphism ambient backing behind profile ── */
+.profile-glow-bg {
+    position: absolute;
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(0, 242, 255, 0.12) 0%,
+        rgba(123, 47, 247, 0.10) 40%,
+        transparent 70%
+    );
+    filter: blur(24px);
+    z-index: 0;
+    animation: glow-pulse 4s ease-in-out infinite;
+}
+@keyframes glow-pulse {
+    0%, 100% { transform: scale(1);   opacity: 0.8; }
+    50%       { transform: scale(1.1); opacity: 1;   }
+}
+
+/* ── Profile image — upgraded frame ── */
+.profile-img {
+    width: 290px;
+    height: 290px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 15%;      /* crop to face, avoid black bars */
+    position: relative;
+    z-index: 2;
+
+    /* White background blending — simulates transparent cutout on dark bg */
+    mix-blend-mode: luminosity;
+    filter:
+        contrast(1.12)
+        brightness(1.06)
+        saturate(1.15)
+        drop-shadow(0 0 0 transparent);
+
+    /* Premium neon border via outline + box-shadow */
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    box-shadow:
+        0 0  0   3px  rgba(0, 242, 255, 0.55),   /* inner neon ring */
+        0 0  20px 4px  rgba(0, 242, 255, 0.30),   /* soft cyan glow  */
+        0 0  50px 10px rgba(123, 47, 247, 0.18),  /* purple bloom    */
+        0 0  90px 20px rgba(0, 242, 255, 0.08),   /* wide outer halo */
+        inset 0 0 30px  rgba(0, 242, 255, 0.04);  /* inner light     */
+
+    transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+.profile-img:hover {
+    transform: scale(1.03);
+    box-shadow:
+        0 0  0   3px  rgba(0, 242, 255, 0.80),
+        0 0  30px 8px  rgba(0, 242, 255, 0.45),
+        0 0  70px 18px rgba(123, 47, 247, 0.28),
+        0 0 120px 30px rgba(0, 242, 255, 0.12);
+}
+
+/* ── Override ring sizes for the larger frame ── */
+.hero-image { width: 380px; height: 380px; }
+.hero-image-ring {
+    width: 105%; height: 105%;
+    border: 1.5px solid rgba(0, 242, 255, 0.45);
+    box-shadow: 0 0 18px rgba(0, 242, 255, 0.15);
+}
+.hero-image-ring.ring2 {
+    width: 90%; height: 90%;
+    border-color: rgba(123, 47, 247, 0.35);
+    box-shadow: 0 0 14px rgba(123, 47, 247, 0.12);
+}
+
+/* ── Floating micro-particles around profile ── */
+.profile-particles {
+    position: absolute;
+    inset: -30px;
+    border-radius: 50%;
+    z-index: 1;
+    pointer-events: none;
+    overflow: visible;
+}
+.profile-particles .pp {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--primary);
+    animation: pp-float var(--dur, 6s) ease-in-out infinite var(--delay, 0s);
+    opacity: 0;
+}
+@keyframes pp-float {
+    0%   { transform: translate(0, 0)       scale(0.6); opacity: 0; }
+    20%  { opacity: 0.8; }
+    80%  { opacity: 0.5; }
+    100% { transform: translate(var(--tx,20px), var(--ty,-60px)) scale(1.1); opacity: 0; }
+}
+
+/* ── Status badge below profile image ── */
+.status-badge-hero {
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 1.1rem;
+    border-radius: 50px;
+    background: rgba(10, 10, 20, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 242, 255, 0.30);
+    box-shadow: 0 0 18px rgba(0, 242, 255, 0.12);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--primary);
+    white-space: nowrap;
+    z-index: 4;
+    letter-spacing: 0.02em;
+}
+.status-dot-green {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 8px #22c55e, 0 0 16px rgba(34, 197, 94, 0.4);
+    flex-shrink: 0;
+    animation: green-pulse 1.8s ease-in-out infinite;
+}
+@keyframes green-pulse {
+    0%, 100% { box-shadow: 0 0 6px #22c55e, 0 0 12px rgba(34,197,94,.3); }
+    50%       { box-shadow: 0 0 12px #22c55e, 0 0 24px rgba(34,197,94,.6); }
+}
+
+/* ── Hero tag — restyle as availability badge ── */
+.hero-tag {
+    background: rgba(34, 197, 94, 0.08);
+    border: 1px solid rgba(34, 197, 94, 0.35);
+    color: #4ade80;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+/* ── Hero description — improved readability ── */
+.hero-description {
+    color: #c8cde4;
+    font-size: 1rem;
+    line-height: 1.85;
+    max-width: 520px;
+    margin-bottom: 2rem;
+}
+
+/* ── Social links — improved icon sizing ── */
+.social-links a {
+    width: 46px;
+    height: 46px;
+    font-size: 1.15rem;
+    border: 1px solid rgba(0, 242, 255, 0.28);
+    background: rgba(0, 242, 255, 0.05);
+    transition: all 0.3s ease;
+}
+.social-links a:hover {
+    background: var(--primary);
+    color: var(--bg-dark);
+    border-color: var(--primary);
+    box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
+    transform: translateY(-5px) scale(1.1);
+}
+
+/* ── Responsive — profile frame ── */
+@media (max-width: 900px) {
+    .hero-image { width: 270px; height: 270px; }
+    .profile-img { width: 210px; height: 210px; }
+    .profile-glow-bg { width: 250px; height: 250px; }
+}
+@media (max-width: 600px) {
+    .hero-image { width: 230px; height: 230px; }
+    .profile-img { width: 180px; height: 180px; }
+}

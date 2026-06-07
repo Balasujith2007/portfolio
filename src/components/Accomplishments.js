@@ -17,33 +17,26 @@ const Accomplishments = () => {
     },
     {
       title: '1400+ Rating',
-      description: 'CodeChef & LeetCode',
+      description: 'Secured on CodeChef and LeetCode',
       metric: '1400+'
     },
     {
-      title: 'Top 15 Rank',
-      description: 'Among 400+ students',
-      metric: 'Top 15'
-    },
-    {
       title: '1000+ Problems',
-      description: 'Solved across platforms',
+      description: 'Solved across rated coding platforms',
       metric: '1000+'
     },
     {
       title: '80+ Contests',
-      description: 'Global competitions',
+      description: 'Participated in global competitive programming contests',
       metric: '80+'
     }
   ];
 
   const certifications = [
-    { name: 'Programming in Java (Elite + Gold)', issuer: 'NPTEL' },
-    { name: 'Python Essential 1 & 2', issuer: 'CISCO' },
-    { name: 'Problem Solving in C', issuer: 'NPTEL' },
-    { name: 'HTML, CSS, JavaScript', issuer: 'Coursera' },
-    { name: 'DBMS (ELITE)', issuer: 'NPTEL' },
-    { name: 'Operating System Foundations', issuer: 'CISCO' }
+    { name: 'Operating System Foundations', issuer: 'CISCO' },
+    { name: 'Cyber security', issuer: 'CISCO' },
+    { name: 'Career Management Essentials', issuer: 'IBM SkillsBuild' },
+    { name: 'Artificial intelligence Essenntials', issuer: 'Coursera' }
   ];
 
   return (
@@ -100,6 +93,17 @@ const Accomplishments = () => {
                 </motion.div>
               ))}
             </div>
+          </motion.div>
+          
+          <motion.div
+            className="declaration-section"
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.8, duration: 0.6 }}
+            style={{ marginTop: '4rem', textAlign: 'center', fontStyle: 'italic' }}
+          >
+            <h3>Declaration</h3>
+            <p>I hereby declare that the information provided in this resume is true and accurate to the best of my knowledge.</p>
           </motion.div>
         </motion.div>
       </div>

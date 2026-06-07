@@ -5,23 +5,23 @@
 ### Project GitHub Links (View Code Buttons)
 
 1. **Direct Property**
-   - URL: `https://github.com/GowthamGowri-11/fsdproject.git`
+   - URL: `https://github.com/BalasujithGowri-11/fsdproject.git`
    - Status: ✅ Updated
 
 2. **Student Performance Tracker**
-   - URL: `https://github.com/GowthamGowri-11/ml-project.git`
+   - URL: `https://github.com/BalasujithGowri-11/ml-project.git`
    - Status: ✅ Updated
 
 3. **Data Guarding**
-   - URL: `https://github.com/GowthamGowri-11`
+   - URL: `https://github.com/BalasujithGowri-11`
    - Status: ✅ Updated (using profile link as no specific repo provided)
 
 4. **Data Securer**
-   - URL: `https://github.com/GowthamGowri-11/DATA-SECURER.git`
+   - URL: `https://github.com/BalasujithGowri-11/DATA-SECURER.git`
    - Status: ✅ Updated
 
 5. **Recipe Bot**
-   - URL: `https://github.com/GowthamGowri-11/recipe-bot.git`
+   - URL: `https://github.com/BalasujithGowri-11/recipe-bot.git`
    - Status: ✅ Updated
 
 ---
@@ -29,23 +29,23 @@
 ### Social Media Links (Verified Across All Components)
 
 #### LinkedIn
-- **URL**: `https://linkedin.com/in/gowtham-m-0a83353771`
+- **URL**: `https://linkedin.com/in/bala-sujith-91a241335`
 - **Format**: Correct (without www)
 - **Locations**: Hero, Contact, Footer
 - **Status**: ✅ Working correctly
 
 #### GitHub
-- **URL**: `https://github.com/GowthamGowri-11`
+- **URL**: `https://github.com/BalasujithGowri-11`
 - **Locations**: Hero, Contact, Footer
 - **Status**: ✅ Working correctly
 
 #### Email
-- **URL**: `mailto:kit28.24bad049@gmail.com`
+- **URL**: `mailto:kit28.24bad026@gmail.com`
 - **Locations**: Hero, Contact
 - **Status**: ✅ Working correctly
 
 #### Phone
-- **URL**: `tel:+918154505751`
+- **URL**: `tel:+917358095641`
 - **Locations**: Hero, Contact
 - **Status**: ✅ Working correctly
 

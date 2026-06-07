@@ -12,8 +12,8 @@ const About = () => {
   const stats = [
     { value: '1000+', label: 'Problems Solved' },
     { value: '80+', label: 'Contests Participated' },
-    { value: '8.92', label: 'CGPA' },
-    { value: '10+', label: 'Projects Completed' }
+    { value: '8.00', label: 'CGPA' },
+    { value: '4+', label: 'Projects Completed' }
   ];
 
   return (
@@ -30,23 +30,13 @@ const About = () => {
           <div className="about-wrapper">
             <div className="about-main">
               <div className="about-intro">
-                <h3>AI & Data Science Engineer</h3>
+                <h3>Objectives</h3>
                 <p className="lead">
-                  I'm an analytical B.Tech graduate in Artificial Intelligence and Data Science 
-                  from KIT - Kalaignar Karunanidhi Institute of Technology, Coimbatore.
+                  Detail-oriented B.Tech graduate specializing in AI and Data Science with expertise in Python, C, C++, data structures, web development, and machine learning.
                 </p>
                 
                 <p>
-                  With proficiency in data structures, C, C++, and Python, I specialize in 
-                  web development, scripting, and competitive programming. My expertise spans 
-                  across data analysis and machine learning, where I combine technical accuracy 
-                  with innovative thinking to tackle challenging problems.
-                </p>
-
-                <p>
-                  I'm passionate about creating efficient solutions and continuously learning 
-                  new technologies. My experience includes freelance development, where I've 
-                  successfully delivered customized solutions for multiple clients.
+                  Seeking opportunities to apply analytical and technical skills in building efficient and data-driven solutions.
                 </p>
 
                 <div className="stats-container">
@@ -72,14 +62,13 @@ const About = () => {
               </div>
               <div className="education-content">
                 <h4>B.Tech – Artificial Intelligence and Data Science</h4>
-                <p className="institution">KIT - Kalaignar Karunanidhi Institute of Technology</p>
-                <p className="location">Coimbatore, Tamil Nadu, India</p>
+                <p className="institution">KIT - KalaignarKarunanidhi Institute of Technology, Coimbatore</p>
                 <div className="education-details">
                   <span className="detail-item">
-                    <strong>CGPA:</strong> 8.92
+                    <strong>CGPA:</strong> 8.00
                   </span>
                   <span className="detail-item">
-                    <strong>Expected:</strong> January 2028
+                    <strong>Expected in:</strong> 01/2028
                   </span>
                 </div>
               </div>

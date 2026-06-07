@@ -29,7 +29,7 @@ You have **2 options**:
 2. Go to: **https://www.emailjs.com/**
 3. Click the **"Sign Up"** button (top right)
 4. Fill in:
-   - Your email: `kit28.24bad049@gmail.com` (or any email you prefer)
+   - Your email: `kit28.24bad026@gmail.com` (or any email you prefer)
    - Create a password
    - Click "Sign Up"
 5. Check your email inbox

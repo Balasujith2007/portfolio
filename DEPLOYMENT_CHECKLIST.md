@@ -163,8 +163,8 @@ npm run deploy
 ### Issue: Images Not Loading
 
 **Solution:**
-- Ensure `profile.png` is in `public` folder
-- Check image path is `/profile.png` (not `./profile.png`)
+- Ensure `profile.jpeg` is in `public` folder
+- Check image path is `/profile.jpeg` (not `./profile.jpeg`)
 - Clear browser cache
 
 ### Issue: Links Not Working
@@ -222,18 +222,18 @@ npm run build
 **Recommended:** Add to `public/index.html`
 
 ```html
-<meta name="description" content="Gowtham M - AI & Data Science Engineer | Full Stack Developer | Portfolio">
-<meta name="keywords" content="Gowtham M, AI, Data Science, Full Stack Developer, React, MERN Stack">
-<meta name="author" content="Gowtham M">
+<meta name="description" content="Balasujith S - AI & Data Science Engineer | Full Stack Developer | Portfolio">
+<meta name="keywords" content="Balasujith S, AI, Data Science, Full Stack Developer, React, MERN Stack">
+<meta name="author" content="Balasujith S">
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Gowtham M - Portfolio">
+<meta property="og:title" content="Balasujith S - Portfolio">
 <meta property="og:description" content="AI & Data Science Engineer | Full Stack Developer">
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:title" content="Gowtham M - Portfolio">
+<meta property="twitter:title" content="Balasujith S - Portfolio">
 <meta property="twitter:description" content="AI & Data Science Engineer | Full Stack Developer">
 ```
 

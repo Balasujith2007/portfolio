@@ -10,7 +10,7 @@ const Footer = () => {
           <div className="footer-brand">
             <h3>
               <span className="logo-bracket">{'<'}</span>
-              GM
+              BS
               <span className="logo-bracket">{'/>'}</span>
             </h3>
             <p>Building innovative solutions with code</p>
@@ -31,7 +31,7 @@ const Footer = () => {
               <h4>Connect</h4>
               <div className="footer-social">
                 <a 
-                  href="https://github.com/GowthamGowri-11" 
+                  href="https://github.com/BalasujithGowri-11" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   aria-label="GitHub"
@@ -39,7 +39,7 @@ const Footer = () => {
                   <FaGithub />
                 </a>
                 <a 
-                  href="https://www.linkedin.com/in/gowtham-m-0a8335377/" 
+                  href="https://www.linkedin.com/in/bala-sujith-91a241335/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
@@ -47,7 +47,7 @@ const Footer = () => {
                   <FaLinkedin />
                 </a>
                 <a 
-                  href="mailto:kit28.24bad049@gmail.com"
+                  href="mailto:kit28.24bad026@gmail.com"
                   aria-label="Email"
                 >
                   <FaEnvelope />
@@ -59,7 +59,7 @@ const Footer = () => {
 
         <div className="footer-bottom">
           <p>
-            © 2026 Gowtham M. Crafted with <FaHeart className="heart-icon" /> and React
+            © 2026 Balasujith S. Crafted with <FaHeart className="heart-icon" /> and React
           </p>
         </div>
       </div>

@@ -12,39 +12,32 @@ const Projects = () => {
 
   const projects = [
     {
-      title: 'Direct Property',
-      description: 'A comprehensive property management system designed to streamline listings, ownership tracking, and transaction management. Features efficient backend architecture for seamless data operations and automated workflow processes.',
-      tech: ['MongoDB', 'Express', 'React', 'Node.js'],
-      category: 'Full Stack Development',
-      github: 'https://github.com/GowthamGowri-11/fsdproject.git'
-    },
-    {
-      title: 'Student Performance Tracker',
-      description: 'Machine learning application that analyzes and predicts student academic performance. Includes comprehensive data preprocessing, interactive visualizations, and predictive model training capabilities.',
-      tech: ['Python', 'Streamlit', 'Scikit-learn', 'Pandas'],
+      title: 'Smartphone Addiction Detection',
+      description: 'AI-powered system for analyzing smartphone usage patterns and identifying signs of digital addiction using machine learning techniques.',
+      tech: ['Usage behavior analysis', 'Addiction risk prediction', 'Data visualization dashboard', 'Machine learning insights', 'Responsive UI'],
       category: 'Machine Learning',
-      github: 'https://github.com/GowthamGowri-11/ml-project.git'
+      github: 'https://github.com/Balasujith2007/smartphone-addition'
     },
     {
-      title: 'Data Guarding',
-      description: 'Modern agricultural data management platform that digitizes manual record-keeping processes. Enhances data integrity, automates workflows, and improves operational efficiency for agricultural stakeholders.',
-      tech: ['Next.js', 'React', 'TypeScript'],
+      title: 'SaaS Product Platform',
+      description: 'Modern SaaS platform featuring authentication, subscription-ready architecture, dashboard management, and scalable application structure.',
+      tech: ['Authentication system', 'User dashboard', 'Scalable architecture', 'Responsive design', 'Secure application structure'],
+      category: 'Full Stack Development',
+      github: 'https://github.com/Balasujith2007/Software-as-a-service'
+    },
+    {
+      title: 'Medicine Reminder System',
+      description: 'Smart medicine reminder application helping users track medications, schedules, and dosage reminders effectively.',
+      tech: ['Medication scheduling', 'Reminder notifications', 'User-friendly dashboard', 'Progress tracking', 'Responsive UI'],
       category: 'Web Application',
-      github: 'https://github.com/GowthamGowri-11'
+      github: 'https://github.com/Balasujith2007/Software-as-a-service'
     },
     {
-      title: 'Data Securer',
-      description: 'Enterprise-grade security system for sensitive data storage and protection. Implements blockchain technology for data integrity verification and advanced encryption techniques for secure data handling.',
-      tech: ['MongoDB', 'Express', 'React', 'Node.js', 'Blockchain'],
-      category: 'Security & Blockchain',
-      github: 'https://github.com/GowthamGowri-11/DATA-SECURER.git'
-    },
-    {
-      title: 'Recipe Bot',
-      description: 'Intelligent recipe recommendation system with ingredient-based search functionality. Provides personalized culinary suggestions through efficient dataset processing and user-friendly interface design.',
-      tech: ['HTML5', 'CSS3', 'JavaScript', 'API Integration'],
+      title: 'SRM Smart Student Portal',
+      description: 'Comprehensive student management portal designed to streamline academic activities, student records, and campus workflows.',
+      tech: ['Student management', 'Academic tracking', 'Dashboard analytics', 'Secure authentication', 'Modern responsive interface'],
       category: 'Web Application',
-      github: 'https://github.com/GowthamGowri-11/recipe-bot.git'
+      github: 'https://github.com/dhyaneshdhyanesh739-ship-it/Smart-Student-Portal'
     }
   ];
 

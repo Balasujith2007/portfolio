@@ -61,7 +61,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 });
 
 /* ── Typing Animation ── */
-const roles = ['AI & Data Science Engineer','Full Stack Developer','Competitive Programmer','Problem Solver'];
+const roles = ['Full Stack Developer','MERN Stack Developer','Software Engineer','React & Node.js Developer'];
 let roleIdx = 0, charIdx = 0, deleting = false;
 const typingEl = document.getElementById('typing-text');
 
@@ -191,7 +191,7 @@ if(form){
       } else { throw new Error('Send failed'); }
     } catch(err) {
       console.error('EmailJS error:', err);
-      statusEl.textContent = '✗ Failed to send. Please email me directly at kit28.24bad049@gmail.com';
+      statusEl.textContent = '✗ Failed to send. Please email me directly at kit28.24bad026@gmail.com';
       statusEl.className = 'form-status error';
     } finally {
       btnText.style.display = 'inline-flex';
@@ -201,3 +201,43 @@ if(form){
     }
   });
 }
+
+/* ── Profile floating particles ── */
+(function spawnProfileParticles(){
+    const container = document.getElementById('profile-particles');
+    if(!container) return;
+
+    const configs = [
+        // [size, color,   tx,   ty,  dur, delay]
+        [3, '#00f2ff',  55, -70,  5.5, 0.0],
+        [2, '#7b2ff7', -60, -50,  6.2, 0.4],
+        [4, '#00f2ff',  40,  65,  7.0, 0.8],
+        [2, '#7b2ff7', -45,  55,  5.8, 1.2],
+        [3, '#00f2ff',  70,  10,  6.8, 0.2],
+        [2, '#00f2ff', -70,   5,  6.0, 1.6],
+        [2, '#7b2ff7',  20, -80,  7.5, 0.6],
+        [3, '#00f2ff', -25, -75,  5.2, 1.0],
+        [2, '#7b2ff7',  65, -30,  6.4, 1.8],
+        [2, '#00f2ff', -50, -60,  7.2, 0.3],
+        [3, '#7b2ff7',  30,  80,  6.6, 0.9],
+        [2, '#00f2ff', -35,  70,  5.6, 1.4],
+    ];
+
+    const r = 145; // radius from center to start position
+    configs.forEach(([size, color, tx, ty, dur, delay], i) => {
+        const angle = (i / configs.length) * 2 * Math.PI;
+        const dot = document.createElement('div');
+        dot.className = 'pp';
+        dot.style.cssText = `
+            width:${size}px; height:${size}px;
+            background:${color};
+            box-shadow: 0 0 ${size * 3}px ${color};
+            left:calc(50% + ${Math.cos(angle)*r}px);
+            top:calc(50% + ${Math.sin(angle)*r}px);
+            --tx:${tx}px; --ty:${ty}px;
+            --dur:${dur}s; --delay:${delay}s;
+            animation-delay:${delay}s;
+        `;
+        container.appendChild(dot);
+    });
+})();

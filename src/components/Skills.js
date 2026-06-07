@@ -16,7 +16,7 @@ const Skills = () => {
       skills: ['Python', 'Java', 'C++', 'C']
     },
     {
-      title: 'Web Development',
+      title: 'Web',
       icon: '< />',
       skills: ['HTML', 'CSS', 'JavaScript', 'MERN Stack']
     },
@@ -28,7 +28,7 @@ const Skills = () => {
     {
       title: 'Tools',
       icon: '🛠',
-      skills: ['Git', 'GitHub', 'n8n', 'UI/UX Design']
+      skills: ['n8n', 'UI/UX Design', 'Figma', 'Stitch']
     }
   ];
 

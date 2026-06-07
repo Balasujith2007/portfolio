@@ -78,7 +78,7 @@ const Hero = () => {
             </motion.div>
 
             <motion.h1 variants={itemVariants}>
-              Hi, I'm <span className="name-highlight">Gowtham M</span>
+              Hi, I'm <span className="name-highlight">Balasujith S</span>
             </motion.h1>
 
             <motion.div className="typing-wrapper" variants={itemVariants}>
@@ -87,15 +87,14 @@ const Hero = () => {
             </motion.div>
 
             <motion.p className="hero-description" variants={itemVariants}>
-              Analytical B.Tech graduate specializing in AI and Data Science.
-              Passionate about solving complex problems through code and innovation.
+              Passionate Full Stack Developer dedicated to crafting modern digital experiences through clean code, innovative thinking, and continuous learning. I specialize in building scalable web applications, exploring emerging technologies, and delivering solutions that combine functionality, performance, and exceptional user experience. My goal is to leverage technology to solve real-world challenges and create meaningful impact.
             </motion.p>
 
             <motion.div className="hero-buttons" variants={itemVariants}>
               <a href="#projects" className="btn btn-secondary">
                 View My Work
               </a>
-              <a href="/Gowtham-Resume.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
+              <a href="/Balasujith-Resume.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
                 View Resume
               </a>
               <a href="#contact" className="btn btn-secondary">
@@ -104,16 +103,16 @@ const Hero = () => {
             </motion.div>
 
             <motion.div className="hero-social" variants={itemVariants}>
-              <a href="https://github.com/GowthamGowri-11" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/BalasujithGowri-11" target="_blank" rel="noopener noreferrer">
                 <FaGithub />
               </a>
-              <a href="https://www.linkedin.com/in/gowtham-m-0a8335377/" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/in/bala-sujith-91a241335/" target="_blank" rel="noopener noreferrer">
                 <FaLinkedin />
               </a>
-              <a href="mailto:kit28.24bad049@gmail.com">
+              <a href="mailto:kit28.24bad026@gmail.com">
                 <FaEnvelope />
               </a>
-              <a href="tel:+918154505751">
+              <a href="tel:+917358095641">
                 <FaPhone />
               </a>
             </motion.div>
@@ -127,8 +126,8 @@ const Hero = () => {
           >
             <div className="hero-image-container">
               <img 
-                src="/profile.png" 
-                alt="Gowtham M - AI & Data Science Engineer" 
+                src="/profile.jpeg" 
+                alt="Balasujith S - AI & Data Science Engineer" 
                 className="hero-profile-image"
               />
               <div className="hero-image-border"></div>

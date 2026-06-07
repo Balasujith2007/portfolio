@@ -1,4 +1,4 @@
-# Gowtham M - Professional Portfolio
+# Balasujith S - Professional Portfolio
 
 A modern, professional React portfolio showcasing skills, projects, and achievements.
 
@@ -69,4 +69,4 @@ Update personal information in the component files:
 
 ## License
 
-© 2026 Gowtham M. All rights reserved.
+© 2026 Balasujith S. All rights reserved.

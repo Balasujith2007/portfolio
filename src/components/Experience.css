@@ -72,6 +72,14 @@
   letter-spacing: 0.5px;
 }
 
+.experience-company {
+  color: var(--accent);
+  font-size: 0.95rem;
+  font-weight: 600;
+  display: block;
+  width: 100%;
+}
+
 .experience-duration {
   color: var(--text-secondary);
   font-size: 0.95rem;

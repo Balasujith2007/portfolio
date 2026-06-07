@@ -12,17 +12,18 @@ const Experience = () => {
   const experiences = [
     {
       title: 'Freelance Developer',
-      duration: '6+ Months',
+      duration: '2–3 Months',
       type: 'Freelance',
       responsibilities: [
-        '6+ months of freelance experience in software and application development',
-        'Successfully completed 6–10 client projects with customized solutions',
+        '2–3 months of freelance experience in software and application development',
+        'Successfully completed 2–3 client projects with customized solutions',
         'Worked on coding, debugging, and project optimization based on client requirements',
         'Delivered high-quality solutions meeting client specifications and deadlines'
       ]
     },
     {
       title: 'Software Development Intern',
+      company: 'Arumexa',
       duration: 'Internship Period',
       type: 'Internship',
       responsibilities: [
@@ -58,6 +59,7 @@ const Experience = () => {
                 <div className="experience-header">
                   <div className="experience-title-section">
                     <h3>{exp.title}</h3>
+                    {exp.company && <span className="experience-company">{exp.company}</span>}
                     <span className="experience-type">{exp.type}</span>
                   </div>
                   <span className="experience-duration">{exp.duration}</span>

@@ -79,14 +79,14 @@ const Contact = () => {
     {
       icon: <FaEnvelope />,
       title: 'Email',
-      content: 'kit28.24bad049@gmail.com',
-      link: 'mailto:kit28.24bad049@gmail.com'
+      content: 'kit28.24bad026@gmail.com',
+      link: 'mailto:kit28.24bad026@gmail.com'
     },
     {
       icon: <FaPhone />,
       title: 'Phone',
-      content: '+91 8154505751',
-      link: 'tel:+918154505751'
+      content: '+91 7358095641',
+      link: 'tel:+917358095641'
     }
   ];
 
@@ -132,14 +132,14 @@ const Contact = () => {
 
               <div className="contact-social">
                 <a 
-                  href="https://github.com/GowthamGowri-11" 
+                  href="https://github.com/BalasujithGowri-11" 
                   target="_blank" 
                   rel="noopener noreferrer"
                 >
                   <FaGithub />
                 </a>
                 <a 
-                  href="https://www.linkedin.com/in/gowtham-m-0a8335377/" 
+                  href="https://www.linkedin.com/in/bala-sujith-91a241335/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                 >

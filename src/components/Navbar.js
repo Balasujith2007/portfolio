@@ -29,7 +29,7 @@ const Navbar = () => {
           whileHover={{ scale: 1.05 }}
         >
           <span className="logo-bracket">{'<'}</span>
-          GM
+          BS
           <span className="logo-bracket">{'/>'}</span>
         </motion.div>
 
