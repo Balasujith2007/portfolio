@@ -28,3 +28,7 @@ yarn-error.log*
 # Temporary files
 *.tmp
 *.log
+server/data/auth.json
+server/data/portfolio.backup.json
+server/data/*.tmp*
+.env

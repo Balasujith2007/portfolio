@@ -1,10 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { usePortfolio } from '../context/PortfolioContext';
 import './Navbar.css';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { setIsPinModalOpen, isAuthenticated, setIsAdminOpen } = usePortfolio();
+
+  const handleLogoClick = () => {
+    if (isAuthenticated) {
+      setIsAdminOpen(true);
+    } else {
+      setIsPinModalOpen(true);
+    }
+  };
+
+  const handleLogoKeyDown = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleLogoClick();
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,6 +44,12 @@ const Navbar = () => {
         <motion.div 
           className="nav-logo"
           whileHover={{ scale: 1.05 }}
+          onClick={handleLogoClick}
+          onKeyDown={handleLogoKeyDown}
+          tabIndex={0}
+          role="button"
+          aria-label="Portfolio Administration Access"
+          title="Portfolio Administration"
         >
           <span className="logo-bracket">{'<'}</span>
           BS

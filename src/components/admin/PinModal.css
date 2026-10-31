@@ -1,0 +1,215 @@
+/* PinModal.css */
+.pin-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(10, 15, 30, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 20px;
+}
+
+.pin-modal-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 440px;
+  padding: 36px 32px;
+  box-shadow: 0 25px 60px rgba(15, 76, 117, 0.25), 0 0 0 1px rgba(15, 76, 117, 0.1);
+  text-align: center;
+  color: var(--primary, #1a1a2e);
+  font-family: inherit;
+}
+
+.pin-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  color: #6c757d;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.pin-modal-close:hover {
+  background: #f1f3f5;
+  color: #1a1a2e;
+  transform: rotate(90deg);
+}
+
+.pin-modal-header {
+  margin-bottom: 24px;
+}
+
+.pin-icon-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(15, 76, 117, 0.1), rgba(50, 130, 184, 0.2));
+  color: #0f4c75;
+  margin-bottom: 16px;
+}
+
+.shield-icon {
+  font-size: 1.8rem;
+}
+
+.lock-subicon {
+  position: absolute;
+  font-size: 0.85rem;
+  color: #0f4c75;
+}
+
+.pin-modal-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 8px;
+}
+
+.pin-modal-subtitle {
+  font-size: 0.92rem;
+  color: #6c757d;
+  line-height: 1.4;
+}
+
+.pin-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.pin-inputs-row {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.pin-digit-box {
+  width: 58px;
+  height: 64px;
+  border: 2px solid #dee2e6;
+  border-radius: 12px;
+  background: #f8f9fa;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  color: #0f4c75;
+  transition: all 0.2s ease;
+  outline: none;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.pin-digit-box:focus {
+  border-color: #0f4c75;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(15, 76, 117, 0.15);
+  transform: translateY(-2px);
+}
+
+.pin-digit-box.filled {
+  border-color: #3282b8;
+  background: #ffffff;
+}
+
+.pin-digit-box.error {
+  border-color: #dc3545;
+  background: #fff5f5;
+  color: #dc3545;
+  animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+.pin-error-alert {
+  background: #fff0f0;
+  border: 1px solid #ffd6d6;
+  color: #d63333;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  width: 100%;
+  text-align: center;
+}
+
+.pin-submit-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 20px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  background: #0f4c75;
+  color: #ffffff;
+  transition: all 0.25s ease;
+}
+
+.pin-submit-btn:hover:not(:disabled) {
+  background: #16213e;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(15, 76, 117, 0.3);
+}
+
+.pin-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+.pin-modal-footer {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #e9ecef;
+  font-size: 0.78rem;
+  color: #8c98a4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 480px) {
+  .pin-modal-card {
+    padding: 28px 20px;
+  }
+  .pin-inputs-row {
+    gap: 10px;
+  }
+  .pin-digit-box {
+    width: 48px;
+    height: 56px;
+    font-size: 1.6rem;
+  }
+}

@@ -64,6 +64,29 @@
   color: var(--accent);
   margin-bottom: 8px;
   font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-counter-value {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-number {
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+}
+
+.stat-suffix {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-left: 2px;
+  color: var(--accent);
 }
 
 .stat-item p {

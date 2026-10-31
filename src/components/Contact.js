@@ -6,6 +6,7 @@ import {
   FaMapMarkerAlt, FaEnvelope, FaPhone, 
   FaGithub, FaLinkedin 
 } from 'react-icons/fa';
+import { usePortfolio } from '../context/PortfolioContext';
 import './Contact.css';
 
 // Initialize EmailJS with public key
@@ -14,6 +15,8 @@ if (typeof window !== 'undefined') {
 }
 
 const Contact = () => {
+  const { data } = usePortfolio();
+  const about = data.about || {};
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
@@ -42,19 +45,12 @@ const Contact = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    console.log('Form data being sent:', formData);
-    console.log('Service ID:', 'service_jhnpxxj');
-    console.log('Template ID:', 'template_cmqge4');
-
     try {
-      // EmailJS credentials configured
       const result = await emailjs.sendForm(
-        'service_jhnpxxj',        // EmailJS Service ID
-        'template_ermvgd4',       // EmailJS Template ID
+        'service_jhnpxxj',
+        'template_ermvgd4',
         formRef.current
       );
-
-      console.log('EmailJS result:', result);
 
       if (result.text === 'OK') {
         setSubmitStatus('success');
@@ -62,7 +58,6 @@ const Contact = () => {
       }
     } catch (error) {
       console.error('Email send error:', error);
-      console.error('Error details:', error.text);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -70,23 +65,27 @@ const Contact = () => {
     }
   };
 
+  const locationText = about.location || 'Coimbatore, India - 641402';
+  const emailText = about.email || 'kit28.24bad026@gmail.com';
+  const phoneText = about.phone || '+91 7358095641';
+
   const contactInfo = [
     {
       icon: <FaMapMarkerAlt />,
       title: 'Location',
-      content: 'Coimbatore, India - 641402'
+      content: locationText
     },
     {
       icon: <FaEnvelope />,
       title: 'Email',
-      content: 'kit28.24bad026@gmail.com',
-      link: 'mailto:kit28.24bad026@gmail.com'
+      content: emailText,
+      link: `mailto:${emailText}`
     },
     {
       icon: <FaPhone />,
       title: 'Phone',
-      content: '+91 7358095641',
-      link: 'tel:+917358095641'
+      content: phoneText,
+      link: `tel:${phoneText.replace(/\s+/g, '')}`
     }
   ];
 
@@ -131,20 +130,26 @@ const Contact = () => {
               ))}
 
               <div className="contact-social">
-                <a 
-                  href="https://github.com/BalasujithGowri-11" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  <FaGithub />
-                </a>
-                <a 
-                  href="https://www.linkedin.com/in/bala-sujith-91a241335/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  <FaLinkedin />
-                </a>
+                {about.github && (
+                  <a 
+                    href={about.github} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    aria-label="GitHub Profile"
+                  >
+                    <FaGithub />
+                  </a>
+                )}
+                {about.linkedin && (
+                  <a 
+                    href={about.linkedin} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn Profile"
+                  >
+                    <FaLinkedin />
+                  </a>
+                )}
               </div>
             </motion.div>
 

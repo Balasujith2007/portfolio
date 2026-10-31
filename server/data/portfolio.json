@@ -1,0 +1,315 @@
+{
+  "about": {
+    "name": "Balasujith S",
+    "welcomeTag": "Welcome to my portfolio",
+    "roles": [
+      "AI & Data Science Engineer",
+      "Full Stack Developer",
+      "Competitive Programmer",
+      "Problem Solver"
+    ],
+    "heroDescription": "Passionate Full Stack Developer dedicated to crafting modern digital experiences through clean code, innovative thinking, and continuous learning. I specialize in building scalable web applications, exploring emerging technologies, and delivering solutions that combine functionality, performance, and exceptional user experience. My goal is to leverage technology to solve real-world challenges and create meaningful impact.",
+    "objectivesLead": "Detail-oriented B.Tech graduate specializing in AI and Data Science with expertise in Python, C, C++, data structures, web development, and machine learning.",
+    "objectivesSecondary": "Seeking opportunities to apply analytical and technical skills in building efficient and data-driven solutions.",
+    "location": "Coimbatore, India - 641402",
+    "email": "kit28.24bad026@gmail.com",
+    "phone": "+91 7358095641",
+    "github": "https://github.com/Balasujith2007",
+    "linkedin": "https://www.linkedin.com/in/bala-sujith-91a241335/",
+    "resumeUrl": "/Balasujith_Resume.pdf",
+    "profileImage": "/profile.jpeg",
+    "education": {
+      "degree": "B.Tech – Artificial Intelligence and Data Science",
+      "institution": "KIT - KalaignarKarunanidhi Institute of Technology, Coimbatore",
+      "cgpa": "8.00",
+      "expected": "01/2028"
+    },
+    "stats": [
+      {
+        "id": "stat-1",
+        "value": "1000+",
+        "label": "Problems Solved"
+      },
+      {
+        "id": "stat-2",
+        "value": "80+",
+        "label": "Contests Participated"
+      },
+      {
+        "id": "stat-3",
+        "value": "8.00",
+        "label": "CGPA"
+      },
+      {
+        "id": "stat-4",
+        "value": "4+",
+        "label": "Projects Completed"
+      }
+    ],
+    "headline": "AI & Full Stack Engineer"
+  },
+  "skills": [
+    {
+      "id": "sec-1",
+      "title": "Programming",
+      "icon": "{ }",
+      "category": "Programming Languages",
+      "published": true,
+      "displayOrder": 1,
+      "skills": [
+        "Python",
+        "Java",
+        "C++",
+        "C"
+      ]
+    },
+    {
+      "id": "sec-2",
+      "title": "Web",
+      "icon": "< />",
+      "category": "Frontend & Full Stack",
+      "published": true,
+      "displayOrder": 2,
+      "skills": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "MERN Stack"
+      ]
+    },
+    {
+      "id": "sec-3",
+      "title": "Database",
+      "icon": "⚡",
+      "category": "Database",
+      "published": true,
+      "displayOrder": 3,
+      "skills": [
+        "DBMS",
+        "MySQL"
+      ]
+    },
+    {
+      "id": "sec-4",
+      "title": "Tools",
+      "icon": "🛠",
+      "category": "Tools & Platforms",
+      "published": true,
+      "displayOrder": 4,
+      "skills": [
+        "n8n",
+        "UI/UX Design",
+        "Figma",
+        "Stitch"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj-1",
+      "title": "Smartphone Addiction Detection",
+      "description": "AI-powered system for analyzing smartphone usage patterns and identifying signs of digital addiction using machine learning techniques.",
+      "detailedDescription": "AI-powered system for analyzing smartphone usage patterns and identifying signs of digital addiction using machine learning techniques.",
+      "category": "Machine Learning",
+      "tech": [
+        "Usage behavior analysis",
+        "Addiction risk prediction",
+        "Data visualization dashboard",
+        "Machine learning insights",
+        "Responsive UI"
+      ],
+      "github": "https://github.com/Balasujith2007/smartphone-addition",
+      "demoUrl": "",
+      "imageUrl": "",
+      "featured": true,
+      "published": true,
+      "displayOrder": 1
+    },
+    {
+      "id": "proj-2",
+      "title": "SaaS Product Platform",
+      "description": "Modern SaaS platform featuring authentication, subscription-ready architecture, dashboard management, and scalable application structure.",
+      "detailedDescription": "Modern SaaS platform featuring authentication, subscription-ready architecture, dashboard management, and scalable application structure.",
+      "category": "Full Stack Development",
+      "tech": [
+        "Authentication system",
+        "User dashboard",
+        "Scalable architecture",
+        "Responsive design",
+        "Secure application structure"
+      ],
+      "github": "https://github.com/Balasujith2007/Software-as-a-service",
+      "demoUrl": "",
+      "imageUrl": "",
+      "featured": true,
+      "published": true,
+      "displayOrder": 2
+    },
+    {
+      "id": "proj-3",
+      "title": "Medicine Reminder System",
+      "description": "Smart medicine reminder application helping users track medications, schedules, and dosage reminders effectively.",
+      "detailedDescription": "Smart medicine reminder application helping users track medications, schedules, and dosage reminders effectively.",
+      "category": "Web Application",
+      "tech": [
+        "Medication scheduling",
+        "Reminder notifications",
+        "User-friendly dashboard",
+        "Progress tracking",
+        "Responsive UI"
+      ],
+      "github": "https://github.com/Balasujith2007/Software-as-a-service",
+      "demoUrl": "",
+      "imageUrl": "",
+      "featured": true,
+      "published": true,
+      "displayOrder": 3
+    },
+    {
+      "id": "proj-4",
+      "title": "SRM Smart Student Portal",
+      "description": "Comprehensive student management portal designed to streamline academic activities, student records, and campus workflows.",
+      "detailedDescription": "Comprehensive student management portal designed to streamline academic activities, student records, and campus workflows.",
+      "category": "Web Application",
+      "tech": [
+        "Student management",
+        "Academic tracking",
+        "Dashboard analytics",
+        "Secure authentication",
+        "Modern responsive interface"
+      ],
+      "github": "https://github.com/dhyaneshdhyanesh739-ship-it/Smart-Student-Portal",
+      "demoUrl": "",
+      "imageUrl": "",
+      "featured": false,
+      "published": true,
+      "displayOrder": 4
+    }
+  ],
+  "experience": [
+    {
+      "id": "exp-1",
+      "title": "Freelance Developer",
+      "company": "",
+      "duration": "2–3 Months",
+      "type": "Freelance",
+      "startDate": "2024-01",
+      "endDate": "2024-04",
+      "currentlyWorking": false,
+      "published": true,
+      "displayOrder": 1,
+      "responsibilities": [
+        "2–3 months of freelance experience in software and application development",
+        "Successfully completed 2–3 client projects with customized solutions",
+        "Worked on coding, debugging, and project optimization based on client requirements",
+        "Delivered high-quality solutions meeting client specifications and deadlines"
+      ]
+    },
+    {
+      "id": "exp-2",
+      "title": "Software Development Intern",
+      "company": "Arumexa",
+      "duration": "Internship Period",
+      "type": "Internship",
+      "startDate": "2024-05",
+      "endDate": "2024-08",
+      "currentlyWorking": false,
+      "published": true,
+      "displayOrder": 2,
+      "responsibilities": [
+        "Developed and optimized basic applications using Python and C++",
+        "Focused on problem-solving and efficient code implementation",
+        "Worked on debugging, testing, and improving program performance",
+        "Collaborated on mini-projects and coding tasks",
+        "Gained hands-on experience in OOP, data structures, and logical thinking"
+      ]
+    }
+  ],
+  "accomplishments": [
+    {
+      "id": "acc-1",
+      "metric": "Division 3",
+      "title": "CodeChef Ranking",
+      "description": "Active competitive programming ranking achieved through division contests.",
+      "icon": "trophy"
+    },
+    {
+      "id": "acc-2",
+      "metric": "1400+",
+      "title": "Contest Rating",
+      "description": "Peak competitive programming contest rating across CodeChef & LeetCode.",
+      "icon": "star"
+    },
+    {
+      "id": "acc-3",
+      "metric": "Top 15",
+      "title": "Academic Rank",
+      "description": "Ranked among top performers out of 400+ department peers in B.Tech AI & DS.",
+      "icon": "medal"
+    },
+    {
+      "id": "acc-4",
+      "metric": "1000+",
+      "title": "Problems Solved",
+      "description": "Data structures and algorithm challenges solved across multiple coding platforms.",
+      "icon": "code"
+    },
+    {
+      "id": "acc-5",
+      "metric": "80+",
+      "title": "Global Contests",
+      "description": "Participated in global competitive rounds and technical hackathons.",
+      "icon": "flag"
+    }
+  ],
+  "certifications": [
+    {
+      "id": "cert-1",
+      "name": "Operating System Foundations",
+      "issuer": "CISCO",
+      "year": "2023",
+      "link": "https://www.netacad.com/",
+      "icon": "🐧"
+    },
+    {
+      "id": "cert-2",
+      "name": "Cyber Security Essentials",
+      "issuer": "CISCO",
+      "year": "2023",
+      "link": "https://www.netacad.com/",
+      "icon": "🛡️"
+    },
+    {
+      "id": "cert-3",
+      "name": "Career Management Essentials",
+      "issuer": "IBM SkillsBuild",
+      "year": "2024",
+      "link": "https://skillsbuild.org/",
+      "icon": "💼"
+    },
+    {
+      "id": "cert-4",
+      "name": "Artificial Intelligence Essentials",
+      "issuer": "Coursera",
+      "year": "2024",
+      "link": "https://www.coursera.org/",
+      "icon": "🧠"
+    },
+    {
+      "id": "cert-5",
+      "name": "Networking Essentials",
+      "issuer": "CISCO",
+      "year": "2023",
+      "link": "https://www.netacad.com/",
+      "icon": "🌐"
+    },
+    {
+      "id": "cert-6",
+      "name": "Introduction to Data Science",
+      "issuer": "Cisco Networking Academy",
+      "year": "2023",
+      "link": "https://www.netacad.com/",
+      "icon": "📊"
+    }
+  ]
+}

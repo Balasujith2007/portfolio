@@ -135,35 +135,43 @@ const skillObserver = new IntersectionObserver(entries => {
 }, { threshold: 0.3 });
 document.querySelectorAll('.skill-progress').forEach(el => skillObserver.observe(el));
 
-/* ── Counter Animation ── */
-function animateCounter(el){
-  const raw    = el.innerText.trim();
-  const isPlus = raw.includes('+');
-  const isDot  = raw.includes('.');
-  const end    = parseFloat(raw);
-  const dur    = 1800;
-  const step   = 16;
-  const steps  = dur / step;
-  const inc    = end / steps;
-  let current  = 0;
-  el.setAttribute('data-target', end);
+/* ── Counter Animation (requestAnimationFrame, ease-out, fires once) ── */
+function runCountUp(el) {
+  const target   = parseFloat(el.dataset.target);
+  const suffix   = el.dataset.suffix  || '';
+  const decimals = parseInt(el.dataset.decimals, 10) || 0;
+  const duration = 2000; // ms
+  const startTs  = performance.now();
 
-  const timer = setInterval(() => {
-    current = Math.min(current + inc, end);
-    el.innerText = (isDot ? current.toFixed(2) : Math.floor(current)) + (isPlus ? '+' : '');
-    if(current >= end) clearInterval(timer);
-  }, step);
+  function easeOut(t) {
+    // Cubic ease-out: fast start, decelerates to target
+    return 1 - Math.pow(1 - t, 3);
+  }
+
+  function tick(now) {
+    const elapsed  = now - startTs;
+    const progress = Math.min(elapsed / duration, 1);
+    const value    = easeOut(progress) * target;
+    el.textContent = value.toFixed(decimals) + suffix;
+    if (progress < 1) requestAnimationFrame(tick);
+  }
+
+  requestAnimationFrame(tick);
 }
 
 const counterObserver = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting){
-      animateCounter(e.target);
-      counterObserver.unobserve(e.target);
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      runCountUp(entry.target);
+      counterObserver.unobserve(entry.target); // trigger only once
     }
   });
 }, { threshold: 0.5 });
-document.querySelectorAll('.stat-item h4').forEach(el => counterObserver.observe(el));
+
+document.querySelectorAll('.count-up').forEach(el => {
+  el.textContent = (0).toFixed(parseInt(el.dataset.decimals, 10) || 0) + (el.dataset.suffix || '');
+  counterObserver.observe(el);
+});
 
 /* ── Contact Form with EmailJS ── */
 const form      = document.getElementById('contact-form');

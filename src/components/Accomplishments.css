@@ -1,151 +1,455 @@
+/* Accomplishments.css - Premium Accomplishments & Certifications Styling */
 .accomplishments {
-  background: var(--bg-secondary);
-}
-
-.achievements-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 25px;
-  margin-bottom: 60px;
-}
-
-.achievement-card {
-  padding: 30px 20px;
-  background: var(--bg-primary);
-  border-radius: 12px;
-  border: 2px solid var(--border);
-  text-align: center;
-  transition: all 0.3s;
+  background: var(--bg-primary, #ffffff);
   position: relative;
   overflow: hidden;
+  padding: 100px 0;
 }
 
-.achievement-card::before {
+/* Subtle background accent glow */
+.accomplishments::before {
+  content: '';
+  position: absolute;
+  top: 15%;
+  left: -8%;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(15, 76, 117, 0.04) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.accomplishments .container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.accomplishments-header-box {
+  margin-bottom: 45px;
+}
+
+.accomplishments .section-title {
+  margin-bottom: 24px;
+}
+
+.accomplishments .section-subtitle {
+  color: var(--text-secondary, #6c757d);
+  font-size: 1.05rem;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
+/* ---------------- 1. ACCOMPLISHMENTS CARDS GRID ---------------- */
+.accomplishments-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  margin-bottom: 50px;
+}
+
+.accomplishment-premium-card {
+  position: relative;
+  background: #ffffff;
+  border: 1.5px solid #e9ecef;
+  border-radius: 18px;
+  padding: 28px 22px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(15, 76, 117, 0.04);
+}
+
+/* Glowing top accent strip on hover */
+.accomplishment-premium-card::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 4px;
-  background: var(--accent);
+  background: linear-gradient(90deg, #0f4c75, #3282b8);
   transform: scaleX(0);
-  transition: transform 0.3s ease;
+  transform-origin: left;
+  transition: transform 0.35s ease;
 }
 
-.achievement-card:hover::before {
+.accomplishment-premium-card:hover {
+  border-color: rgba(15, 76, 117, 0.35);
+  box-shadow: 0 18px 40px rgba(15, 76, 117, 0.12), 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.accomplishment-premium-card:hover::before {
   transform: scaleX(1);
 }
 
-.achievement-card:hover {
-  box-shadow: 0 10px 30px var(--shadow-hover);
-  border-color: var(--accent);
-  transform: translateY(-8px);
+.card-top-icon-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 14px;
 }
 
-.achievement-metric {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: var(--accent);
-  margin-bottom: 15px;
+.accomplishment-icon-badge {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(15, 76, 117, 0.08), rgba(50, 130, 184, 0.16));
+  color: #0f4c75;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  transition: all 0.3s ease;
+}
+
+.accomplishment-premium-card:hover .accomplishment-icon-badge {
+  background: #0f4c75;
+  color: #ffffff;
+  transform: scale(1.08);
+}
+
+.accomplishment-metric {
   font-family: 'JetBrains Mono', monospace;
-}
-
-.achievement-card h3 {
-  font-size: 1.1rem;
-  color: var(--text-primary);
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #0f4c75;
+  line-height: 1.1;
   margin-bottom: 8px;
-  font-weight: 700;
+  letter-spacing: -0.5px;
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  align-items: baseline;
 }
 
-.achievement-card p {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
+.accomplishment-metric .stat-counter-value {
+  display: inline-flex;
+  align-items: baseline;
+  font-variant-numeric: tabular-nums;
 }
 
-.certifications-section {
-  margin-top: 40px;
+.accomplishment-metric .stat-number {
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
 }
 
-.certifications-header {
-  background: var(--accent);
-  padding: 20px 30px;
-  border-radius: 12px 12px 0 0;
-  margin-bottom: 0;
-}
-
-.certifications-header h3 {
+.accomplishment-metric .stat-suffix {
   font-size: 1.8rem;
-  color: white;
-  margin: 0;
   font-weight: 700;
+  margin-left: 2px;
+  color: #0f4c75;
 }
 
-.certifications-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  background: var(--bg-primary);
-  padding: 30px;
-  border-radius: 0 0 12px 12px;
-  border: 2px solid var(--border);
-  border-top: none;
-}
-
-.cert-card {
-  padding: 20px 25px;
-  background: var(--bg-secondary);
-  border-radius: 10px;
-  border: 2px solid var(--border);
-  transition: all 0.3s;
-  position: relative;
-}
-
-.cert-card::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 4px;
-  height: 100%;
-  background: var(--accent);
-  transform: scaleY(0);
-  transition: transform 0.3s ease;
-}
-
-.cert-card:hover::after {
-  transform: scaleY(1);
-}
-
-.cert-card:hover {
-  box-shadow: 0 8px 25px var(--shadow-hover);
-  border-color: var(--accent);
-  transform: translateX(8px);
-}
-
-.cert-content h4 {
+.accomplishment-title {
   font-size: 1.05rem;
-  color: var(--text-primary);
-  margin-bottom: 6px;
   font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 8px;
+  line-height: 1.35;
 }
 
-.cert-content p {
-  color: var(--accent);
-  font-size: 0.9rem;
+.accomplishment-description {
+  font-size: 0.86rem;
+  color: #6c757d;
+  line-height: 1.55;
+  margin: 0;
+  margin-top: auto;
+}
+
+/* ---------------- 2. CERTIFICATIONS CONTAINER WITH NAVY HEADER ---------------- */
+.certifications-container-card {
+  background: #ffffff;
+  border: 1.5px solid rgba(15, 76, 117, 0.16);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 16px 45px rgba(15, 76, 117, 0.07);
+  margin-bottom: 40px;
+}
+
+/* Full-width Navy-Blue Header */
+.certifications-navy-header {
+  background: #16213e;
+  padding: 24px 34px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #0f4c75;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.header-title-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-cert-icon {
+  font-size: 2rem;
+  color: #3282b8;
+}
+
+.certifications-heading {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 4px;
+  letter-spacing: -0.3px;
+}
+
+.certifications-subhead {
+  font-size: 0.88rem;
+  color: #a0aec0;
+}
+
+.cert-count-pill {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  padding: 6px 16px;
+  border-radius: 30px;
+  letter-spacing: 0.4px;
+}
+
+/* Certifications Cards Grid inside container */
+.certifications-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 34px;
+  background: #ffffff;
+}
+
+/* Individual Certification Card */
+.cert-premium-card {
+  background: #f8f9fa;
+  border: 1.5px solid #dee2e6;
+  border-radius: 14px;
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.cert-premium-card:hover {
+  background: #ffffff;
+  border-color: #0f4c75;
+  box-shadow: 0 12px 30px rgba(15, 76, 117, 0.1);
+  transform: translateY(-5px);
+}
+
+.cert-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.cert-issuer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: rgba(15, 76, 117, 0.08);
+  color: #0f4c75;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  border-radius: 6px;
+}
+
+.issuer-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #0f4c75;
+}
+
+.cert-year-badge {
+  font-size: 0.78rem;
   font-weight: 600;
+  color: #6c757d;
+  background: #ffffff;
+  border: 1px solid #dee2e6;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+.cert-card-body {
+  margin-bottom: 20px;
+}
+
+.cert-card-icon-title {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.cert-card-emoji-icon {
+  font-size: 1.4rem;
+  line-height: 1.2;
+}
+
+.cert-title {
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  line-height: 1.35;
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+
+.cert-card-footer {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid #e9ecef;
+}
+
+.verify-credential-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 16px;
+  background: #0f4c75;
+  color: #ffffff;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(15, 76, 117, 0.2);
+}
+
+.verify-credential-btn:hover {
+  background: #16213e;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(15, 76, 117, 0.3);
+}
+
+.btn-ext-icon {
+  font-size: 0.8rem;
+}
+
+.credential-verified-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #28a745;
+  padding: 8px 0;
+}
+
+.verified-icon {
+  font-size: 1rem;
+}
+
+/* ---------------- 3. DECLARATION CARD ---------------- */
+.portfolio-declaration-card {
+  background: #f8f9fa;
+  border: 1.5px solid #e9ecef;
+  border-radius: 16px;
+  padding: 24px 30px;
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+.declaration-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.declaration-badge-icon {
+  font-size: 1.6rem;
+  color: #0f4c75;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.declaration-content h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 4px;
+}
+
+.declaration-content p {
+  font-size: 0.9rem;
+  color: #6c757d;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ---------------- RESPONSIVE BREAKPOINTS ---------------- */
+@media (max-width: 1100px) {
+  .accomplishments-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .certifications-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
-  .achievements-grid {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  .accomplishments {
+    padding: 70px 0;
   }
 
-  .certifications-grid {
+  .accomplishments-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .accomplishment-premium-card {
+    padding: 22px 18px;
+  }
+
+  .accomplishment-metric {
+    font-size: 1.7rem;
+  }
+
+  .accomplishment-title {
+    font-size: 0.98rem;
+  }
+
+  .certifications-navy-header {
+    padding: 18px 22px;
+  }
+
+  .certifications-heading {
+    font-size: 1.35rem;
+  }
+
+  .certifications-cards-grid {
     grid-template-columns: 1fr;
     padding: 20px;
+    gap: 18px;
   }
 
-  .achievement-metric {
-    font-size: 2rem;
+  .portfolio-declaration-card {
+    padding: 18px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .accomplishments-cards-grid {
+    grid-template-columns: 1fr;
   }
 }

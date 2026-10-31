@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import { PortfolioProvider } from './context/PortfolioContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -10,12 +11,17 @@ import Accomplishments from './components/Accomplishments';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import FloatingElements from './components/FloatingElements';
+import BackgroundEffects from './components/BackgroundEffects';
+import ScrollRevealWrapper from './components/ScrollRevealWrapper';
+import PinModal from './components/admin/PinModal';
+import AdminDashboard from './components/admin/AdminDashboard';
 
-function App() {
+function AppContent() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => setIsLoading(false), 1500);
+    const timer = setTimeout(() => setIsLoading(false), 1500);
+    return () => clearTimeout(timer);
   }, []);
 
   if (isLoading) {
@@ -30,19 +36,31 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="App relative">
+      <BackgroundEffects />
       <FloatingElements />
       <Navbar />
-      <Hero />
-      <About />
-      <Skills />
-      <Experience />
-      <Projects />
-      <Accomplishments />
-      <Contact />
+      <ScrollRevealWrapper><Hero /></ScrollRevealWrapper>
+      <ScrollRevealWrapper><About /></ScrollRevealWrapper>
+      <ScrollRevealWrapper><Skills /></ScrollRevealWrapper>
+      <ScrollRevealWrapper><Experience /></ScrollRevealWrapper>
+      <ScrollRevealWrapper><Projects /></ScrollRevealWrapper>
+      <ScrollRevealWrapper><Accomplishments /></ScrollRevealWrapper>
+      <ScrollRevealWrapper><Contact /></ScrollRevealWrapper>
       <Footer />
+      <PinModal />
+      <AdminDashboard />
     </div>
   );
 }
 
+function App() {
+  return (
+    <PortfolioProvider>
+      <AppContent />
+    </PortfolioProvider>
+  );
+}
+
 export default App;
+

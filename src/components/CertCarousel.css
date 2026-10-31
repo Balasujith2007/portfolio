@@ -1,0 +1,135 @@
+/* src/components/CertCarousel.css */
+
+/* Swiper styling */
+.certifications-swiper {
+  padding: 40px 10px 80px 10px !important;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Slide default state (blurred & transparent when inactive) */
+.certifications-swiper .swiper-slide {
+  width: 320px !important;
+  height: auto;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.35;
+  filter: blur(4px) grayscale(50%);
+  transform: scale(0.85);
+}
+
+/* Active slide state (scaled, opaque, sharp, glowing) */
+.certifications-swiper .swiper-slide-active {
+  opacity: 1 !important;
+  filter: blur(0) grayscale(0%) !important;
+  transform: scale(1.05) !important;
+  z-index: 10;
+}
+
+/* Slide active card glow effect */
+.certifications-swiper .swiper-slide-active > div {
+  box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.25), 
+              0 0 80px -20px rgba(124, 58, 237, 0.35) !important;
+  border-color: rgba(167, 139, 250, 0.6) !important;
+  background-color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* Navigation button customization */
+.swiper-button-prev-custom,
+.swiper-button-next-custom {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  color: #4F46E5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 32px 0 rgba(99, 102, 241, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 20;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.swiper-button-prev-custom:hover,
+.swiper-button-next-custom:hover {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(99, 102, 241, 0.4);
+  color: #7C3AED;
+  box-shadow: 0 12px 24px rgba(99, 102, 241, 0.2);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.swiper-button-prev-custom:active,
+.swiper-button-next-custom:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.swiper-button-prev-custom {
+  left: 20px;
+}
+
+.swiper-button-next-custom {
+  right: 20px;
+}
+
+/* Hide navigation buttons on mobile if viewport is small */
+@media (max-width: 640px) {
+  .swiper-button-prev-custom {
+    left: 5px;
+  }
+  .swiper-button-next-custom {
+    right: 5px;
+  }
+  .swiper-button-prev-custom,
+  .swiper-button-next-custom {
+    width: 40px;
+    height: 40px;
+  }
+  .certifications-swiper .swiper-slide {
+    width: 270px !important;
+  }
+}
+
+/* Custom Swiper Pagination bullets */
+.certifications-swiper .swiper-pagination-bullet {
+  background: #A78BFA !important;
+  opacity: 0.3;
+  width: 10px;
+  height: 10px;
+  transition: all 0.4s ease;
+  margin: 0 6px !important;
+}
+
+.certifications-swiper .swiper-pagination-bullet-active {
+  opacity: 1 !important;
+  background: #7C3AED !important;
+  width: 28px !important;
+  border-radius: 5px !important;
+}
+
+/* Wrapper background overlay and glow animations */
+.glow-pulse-slow {
+  animation: pulse-slow 8s infinite ease-in-out alternate;
+}
+
+.glow-pulse-delayed {
+  animation: pulse-slow 8s infinite ease-in-out alternate 4s;
+}
+
+@keyframes pulse-slow {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.15;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.3;
+  }
+}

@@ -1,15 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { usePortfolio } from '../context/PortfolioContext';
 import './Experience.css';
 
 const Experience = () => {
+  const { data } = usePortfolio();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
   });
 
-  const experiences = [
+  const experiences = data.experience && data.experience.length > 0 ? data.experience : [
     {
       title: 'Freelance Developer',
       duration: '2–3 Months',
