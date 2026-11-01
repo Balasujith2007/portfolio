@@ -40,11 +40,11 @@ function AppContent() {
       <BackgroundEffects />
       <FloatingElements />
       <Navbar />
-      <ScrollRevealWrapper><Hero /></ScrollRevealWrapper>
+      <Hero />
       <ScrollRevealWrapper><About /></ScrollRevealWrapper>
       <ScrollRevealWrapper><Skills /></ScrollRevealWrapper>
       <ScrollRevealWrapper><Experience /></ScrollRevealWrapper>
-      <ScrollRevealWrapper><Projects /></ScrollRevealWrapper>
+      <Projects />
       <ScrollRevealWrapper><Accomplishments /></ScrollRevealWrapper>
       <ScrollRevealWrapper><Contact /></ScrollRevealWrapper>
       <Footer />

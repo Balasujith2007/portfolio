@@ -1,7 +1,7 @@
 .App {
   min-height: 100vh;
   position: relative;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .loader-container {
@@ -49,7 +49,7 @@
 }
 
 section {
-  padding: 100px 0;
+  padding: 65px 0;
 }
 
 .container {
@@ -62,7 +62,7 @@ section {
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--primary);
-  margin-bottom: 60px;
+  margin-bottom: 36px;
   position: relative;
   display: inline-block;
 }

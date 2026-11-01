@@ -1,16 +1,14 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { motion, useScroll, useSpring, useTransform, useMotionValueEvent } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { 
-  FaGithub, FaExternalLinkAlt, FaChevronLeft, FaChevronRight, 
-  FaStar, FaLayerGroup, FaThLarge, FaSlidersH, FaPause, FaPlay 
-} from 'react-icons/fa';
+import { FaLayerGroup, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { usePortfolio } from '../context/PortfolioContext';
+import Stacked3DCard from './Stacked3DCard';
 import './Projects.css';
 
 const Projects = () => {
   const { data } = usePortfolio();
-  const [ref, inView] = useInView({
+  const [headerRef, headerInView] = useInView({
     triggerOnce: true,
     threshold: 0.1
   });
@@ -58,415 +56,225 @@ const Projects = () => {
     }
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(1);
-  const [isPaused, setIsPaused] = useState(false);
-  const [viewMode, setViewMode] = useState('carousel'); // 'carousel' | 'grid'
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Touch swipe states
-  const [touchStart, setTouchStart] = useState(null);
-  const [touchEnd, setTouchEnd] = useState(null);
-  const carouselRef = useRef(null);
-
   const total = projects.length;
+  const [isMobile, setIsMobile] = useState(false);
+  const [activeProjectIndex, setActiveProjectIndex] = useState(0);
 
+  // Responsive shift distances for the overlapping 3D stack
+  const [shifts, setShifts] = useState({ shift1: 310, shift2: 530 });
+
+  const containerRef = useRef(null);
+  const touchStartX = useRef(null);
+
+  // Detect responsive breakpoints & calculate horizontal offsets
   useEffect(() => {
     const handleResize = () => {
-      const mobile = window.innerWidth <= 768;
+      const vw = window.innerWidth;
+      const mobile = vw <= 768;
       setIsMobile(mobile);
-      if (mobile) setViewMode('carousel');
+
+      if (vw > 1200) {
+        setShifts({ shift1: 320, shift2: 540 });
+      } else if (vw > 992) {
+        setShifts({ shift1: 270, shift2: 460 });
+      } else if (vw > 768) {
+        setShifts({ shift1: 220, shift2: 380 });
+      } else {
+        setShifts({ shift1: 170, shift2: 300 });
+      }
     };
+
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const nextSlide = useCallback(() => {
+  // Scroll tracking across the sticky section
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end end']
+  });
+
+  // Convert scroll progress (0..1) to continuous active index (0..total-1)
+  const continuousIndex = useTransform(scrollYProgress, [0, 1], [0, total - 1]);
+
+  // Spring physics for liquid-smooth transitions
+  const smoothIndex = useSpring(continuousIndex, {
+    stiffness: 120,
+    damping: 24,
+    mass: 0.6
+  });
+
+  // Sync active project integer index
+  useMotionValueEvent(smoothIndex, 'change', (latest) => {
     if (total <= 1) return;
-    setDirection(1);
-    setCurrentIndex((prev) => (prev + 1) % total);
-  }, [total]);
+    const clamped = Math.max(0, Math.min(total - 1, Math.round(latest)));
+    setActiveProjectIndex(clamped);
+  });
 
-  const prevSlide = useCallback(() => {
-    if (total <= 1) return;
-    setDirection(-1);
-    setCurrentIndex((prev) => (prev - 1 + total) % total);
-  }, [total]);
+  // Programmatic navigation to a specific project
+  const goToProject = useCallback((targetIdx) => {
+    if (targetIdx < 0 || targetIdx >= total) return;
+    setActiveProjectIndex(targetIdx);
 
-  const goToSlide = (idx) => {
-    if (idx === currentIndex) return;
-    setDirection(idx > currentIndex ? 1 : -1);
-    setCurrentIndex(idx);
-  };
+    if (!isMobile && containerRef.current && total > 1) {
+      const rect = containerRef.current.getBoundingClientRect();
+      const currentScrollY = window.scrollY || window.pageYOffset;
+      const containerTop = currentScrollY + rect.top;
+      const containerHeight = containerRef.current.offsetHeight;
+      const scrollableDistance = containerHeight - window.innerHeight;
 
-  // Autoplay functionality: slow 6-second rotation, paused on hover/focus
-  useEffect(() => {
-    if (isPaused || viewMode !== 'carousel' || total <= 1) return;
-    const timer = setInterval(() => {
-      nextSlide();
-    }, 6000);
-    return () => clearInterval(timer);
-  }, [isPaused, viewMode, total, nextSlide]);
-
-  // Touch handlers for mobile swipe
-  const handleTouchStart = (e) => {
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchMove = (e) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
-    const minSwipeDistance = 50;
-    if (distance > minSwipeDistance) {
-      nextSlide();
-    } else if (distance < -minSwipeDistance) {
-      prevSlide();
+      if (scrollableDistance > 0) {
+        const targetScrollY = containerTop + (targetIdx / (total - 1)) * scrollableDistance;
+        window.scrollTo({
+          top: targetScrollY,
+          behavior: 'smooth'
+        });
+      }
     }
-    setTouchStart(null);
-    setTouchEnd(null);
+  }, [total, isMobile]);
+
+  // Touch swipe support on mobile
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
   };
 
-  // Keyboard navigation
-  const handleKeyDown = (e) => {
-    if (viewMode !== 'carousel') return;
-    if (e.key === 'ArrowRight') nextSlide();
-    if (e.key === 'ArrowLeft') prevSlide();
+  const handleTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const deltaX = touchStartX.current - touchEndX;
+
+    if (Math.abs(deltaX) > 40) {
+      if (deltaX > 0 && activeProjectIndex < total - 1) {
+        goToProject(activeProjectIndex + 1);
+      } else if (deltaX < 0 && activeProjectIndex > 0) {
+        goToProject(activeProjectIndex - 1);
+      }
+    }
+    touchStartX.current = null;
   };
 
-  // Slide transition variants
-  const slideVariants = {
-    enter: (dir) => ({
-      x: dir > 0 ? 180 : -180,
-      opacity: 0,
-      scale: 0.96
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-      scale: 1,
-      transition: {
-        x: { type: 'spring', stiffness: 280, damping: 28 },
-        opacity: { duration: 0.35 }
-      }
-    },
-    exit: (dir) => ({
-      x: dir > 0 ? -180 : 180,
-      opacity: 0,
-      scale: 0.96,
-      transition: {
-        x: { type: 'spring', stiffness: 280, damping: 28 },
-        opacity: { duration: 0.3 }
-      }
-    })
-  };
+  const desktopContainerHeight = `${Math.max(160, total * 45)}vh`;
 
   return (
-    <section 
-      className="projects" 
-      id="projects" 
-      onKeyDown={handleKeyDown}
-      tabIndex={0}
-      aria-label="Featured Projects Section"
+    <section
+      className={`projects projects-scroll-container ${isMobile ? 'is-mobile-view' : 'is-desktop-scroll'}`}
+      id="projects"
+      ref={containerRef}
+      style={!isMobile ? { height: desktopContainerHeight } : {}}
+      aria-label="Featured Projects 3D Stack"
     >
-      <div className="container">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 40 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
-          {/* Header Row with Title and Layout Switcher */}
-          <div className="section-header-row">
-            <div>
-              <h2 className="section-title">Featured Projects</h2>
-              <p className="section-subtitle">A showcase of recent software implementations, AI applications, and full-stack platforms</p>
-            </div>
-
-            {/* Desktop View Mode Toggle */}
-            {!isMobile && total > 1 && (
-              <div className="view-mode-toggle">
-                <button
-                  type="button"
-                  className={`toggle-btn ${viewMode === 'carousel' ? 'active' : ''}`}
-                  onClick={() => setViewMode('carousel')}
-                  title="Sliding Carousel View"
-                  aria-label="Carousel layout"
-                >
-                  <FaSlidersH /> <span>Sliding Showcase</span>
-                </button>
-                <button
-                  type="button"
-                  className={`toggle-btn ${viewMode === 'grid' ? 'active' : ''}`}
-                  onClick={() => setViewMode('grid')}
-                  title="All Projects Grid"
-                  aria-label="Grid layout"
-                >
-                  <FaThLarge /> <span>All Projects</span>
-                </button>
-              </div>
-            )}
-          </div>
-
-          {/* PROJECT SELECTOR TABS STRIP */}
-          {total > 0 && (
-            <div className="projects-nav-strip">
-              {projects.map((project, idx) => (
-                <button
-                  key={project.id || idx}
-                  type="button"
-                  className={`project-tab-pill ${viewMode === 'carousel' && currentIndex === idx ? 'active' : ''}`}
-                  onClick={() => {
-                    goToSlide(idx);
-                    if (viewMode !== 'carousel' && isMobile) setViewMode('carousel');
-                  }}
-                  aria-label={`Select project ${project.title}`}
-                >
-                  <span className="project-tab-num">0{idx + 1}</span>
-                  <span className="project-tab-title">{project.title}</span>
-                  {project.featured && <FaStar className="featured-star-icon" title="Featured Project" />}
-                </button>
-              ))}
-            </div>
-          )}
-
-          {/* EMPTY STATE */}
-          {total === 0 ? (
-            <div className="projects-empty-state">
-              <FaLayerGroup className="empty-icon" />
-              <h3>No Published Projects Available</h3>
-              <p>Projects will appear here once published from the admin management portal.</p>
-            </div>
-          ) : viewMode === 'carousel' ? (
-            /* 1. HORIZONTAL SLIDING PROJECT CAROUSEL */
-            <div 
-              className="projects-carousel-wrapper"
-              ref={carouselRef}
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
-              onFocus={() => setIsPaused(true)}
-              onBlur={() => setIsPaused(false)}
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
+      <div className="projects-sticky-viewport">
+        {/* Section Header: Title and Subtitle */}
+        <div className="projects-header-block">
+          <div className="container">
+            <motion.div
+              ref={headerRef}
+              initial={{ opacity: 0, y: 30 }}
+              animate={headerInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.55 }}
+              className="section-title-wrap"
             >
-              {/* Carousel Top Controls */}
-              <div className="carousel-top-bar">
-                <div className="carousel-meta-indicator">
-                  <span className="meta-badge">
-                    PROJECT {currentIndex + 1 < 10 ? `0${currentIndex + 1}` : currentIndex + 1} / {total < 10 ? `0${total}` : total}
-                  </span>
-                  {projects[currentIndex].featured && (
-                    <span className="featured-badge">
-                      <FaStar /> Featured
-                    </span>
-                  )}
-                </div>
+              <h2 className="section-title">Featured Projects</h2>
+              <p className="section-subtitle">
+                A showcase of recent software implementations, AI applications, and full-stack platforms
+              </p>
+            </motion.div>
+          </div>
+        </div>
 
-                <div className="carousel-arrow-buttons">
-                  <button
-                    type="button"
-                    className="arrow-btn prev"
-                    onClick={prevSlide}
-                    aria-label="Previous project"
-                    title="Previous project (Left Arrow)"
-                  >
-                    <FaChevronLeft />
-                  </button>
-                  <button
-                    type="button"
-                    className="arrow-btn next"
-                    onClick={nextSlide}
-                    aria-label="Next project"
-                    title="Next project (Right Arrow)"
-                  >
-                    <FaChevronRight />
-                  </button>
-                </div>
-              </div>
-
-              {/* Sliding Track */}
-              <div className="carousel-viewport">
-                <AnimatePresence custom={direction} mode="wait">
-                  <motion.article
-                    key={currentIndex}
-                    custom={direction}
-                    variants={slideVariants}
-                    initial="enter"
-                    animate="center"
-                    exit="exit"
-                    className="project-item premium-project-card active-slide"
-                  >
-                    <div className="project-card-layout">
-                      {/* Left Header / Numerical Badge */}
-                      <div className="project-badge-col">
-                        <div className="project-number">
-                          0{currentIndex + 1}
-                        </div>
-                        <div className="project-accent-indicator"></div>
-                      </div>
-
-                      {/* Main Project Details */}
-                      <div className="project-content">
-                        <div className="project-category-row">
-                          <span className="project-category">{projects[currentIndex].category}</span>
-                          {projects[currentIndex].featured && (
-                            <span className="featured-tag">
-                              <FaStar /> Star Project
-                            </span>
-                          )}
-                        </div>
-
-                        <h3 className="project-title">{projects[currentIndex].title}</h3>
-
-                        <p className="project-desc">
-                          {projects[currentIndex].description}
-                        </p>
-
-                        <div className="project-footer">
-                          {/* Tech Stack Chips */}
-                          <div className="project-tech-list">
-                            {(projects[currentIndex].tech || []).map((tech, idx) => (
-                              <span key={idx} className="tech-badge">
-                                <span className="tech-badge-dot"></span>
-                                {tech}
-                              </span>
-                            ))}
-                          </div>
-
-                          {/* Action Buttons */}
-                          <div className="project-actions-group">
-                            {projects[currentIndex].github && (
-                              <a 
-                                href={projects[currentIndex].github} 
-                                target="_blank" 
-                                rel="noopener noreferrer" 
-                                className="project-btn btn-code"
-                                aria-label={`View source code for ${projects[currentIndex].title}`}
-                              >
-                                <FaGithub /> View Code
-                              </a>
-                            )}
-                            {projects[currentIndex].demoUrl && (
-                              <a 
-                                href={projects[currentIndex].demoUrl} 
-                                target="_blank" 
-                                rel="noopener noreferrer" 
-                                className="project-btn btn-demo"
-                                aria-label={`View live demo for ${projects[currentIndex].title}`}
-                              >
-                                <FaExternalLinkAlt /> Live Demo
-                              </a>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.article>
-                </AnimatePresence>
-              </div>
-
-              {/* Bottom Pagination Dots & Autoplay Indicator */}
-              <div className="carousel-bottom-bar">
-                <div className="carousel-dots-row">
-                  {projects.map((_, idx) => (
-                    <button
-                      key={idx}
-                      type="button"
-                      className={`carousel-dot ${currentIndex === idx ? 'active' : ''}`}
-                      onClick={() => goToSlide(idx)}
-                      aria-label={`Jump to project ${idx + 1}`}
-                    />
-                  ))}
-                </div>
-
-                <div className="carousel-pause-status">
-                  <span className="pause-indicator-text">
-                    {isPaused ? <><FaPause /> Paused on hover</> : <><FaPlay /> Auto-sliding</>}
-                  </span>
-                </div>
-              </div>
-            </div>
-          ) : (
-            /* 2. FULL GRID VIEW OPTION */
-            <div className="projects-grid-container">
-              {projects.map((project, index) => (
-                <motion.article
-                  key={project.id || index}
-                  className="project-item premium-project-card"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: index * 0.12, duration: 0.5 }}
-                  whileHover={{ y: -6 }}
+        {/* Empty State Fallback */}
+        {total === 0 ? (
+          <div className="projects-empty-state">
+            <FaLayerGroup className="empty-icon" />
+            <h3>No Published Projects Available</h3>
+            <p>Projects will appear here once published from the admin management portal.</p>
+          </div>
+        ) : (
+          /* 3D Overlapping Stack Arena */
+          <div
+            className="stacked-deck-viewport"
+            onTouchStart={isMobile ? handleTouchStart : undefined}
+            onTouchEnd={isMobile ? handleTouchEnd : undefined}
+          >
+            {/* Minimal Left / Right Floating Navigation Arrows */}
+            {total > 1 && (
+              <>
+                <button
+                  type="button"
+                  className="stack-nav-arrow arrow-left"
+                  onClick={() => goToProject(activeProjectIndex - 1)}
+                  disabled={activeProjectIndex === 0}
+                  aria-label="Previous project in stack"
                 >
-                  <div className="project-card-layout">
-                    <div className="project-badge-col">
-                      <div className="project-number">
-                        {index + 1 < 10 ? `0${index + 1}` : index + 1}
-                      </div>
-                      <div className="project-accent-indicator"></div>
-                    </div>
+                  <FaChevronLeft />
+                </button>
+                <button
+                  type="button"
+                  className="stack-nav-arrow arrow-right"
+                  onClick={() => goToProject(activeProjectIndex + 1)}
+                  disabled={activeProjectIndex === total - 1}
+                  aria-label="Next project in stack"
+                >
+                  <FaChevronRight />
+                </button>
+              </>
+            )}
 
-                    <div className="project-content">
-                      <div className="project-category-row">
-                        <span className="project-category">{project.category}</span>
-                        {project.featured && (
-                          <span className="featured-tag">
-                            <FaStar /> Star Project
-                          </span>
-                        )}
-                      </div>
-
-                      <h3 className="project-title">{project.title}</h3>
-
-                      <p className="project-desc">{project.description}</p>
-
-                      <div className="project-footer">
-                        <div className="project-tech-list">
-                          {(project.tech || []).map((tech, idx) => (
-                            <span key={idx} className="tech-badge">
-                              <span className="tech-badge-dot"></span>
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-
-                        <div className="project-actions-group">
-                          {project.github && (
-                            <a 
-                              href={project.github} 
-                              target="_blank" 
-                              rel="noopener noreferrer" 
-                              className="project-btn btn-code"
-                              aria-label={`View code for ${project.title}`}
-                            >
-                              <FaGithub /> View Code
-                            </a>
-                          )}
-                          {project.demoUrl && (
-                            <a 
-                              href={project.demoUrl} 
-                              target="_blank" 
-                              rel="noopener noreferrer" 
-                              className="project-btn btn-demo"
-                              aria-label={`View demo for ${project.title}`}
-                            >
-                              <FaExternalLinkAlt /> Live Demo
-                            </a>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </motion.article>
+            {/* Overlapping 3D Cards Stack Container */}
+            <div className="stacked-deck-container">
+              {projects.map((project, index) => (
+                <Stacked3DCard
+                  key={project.id || index}
+                  project={project}
+                  index={index}
+                  total={total}
+                  smoothIndex={smoothIndex}
+                  activeProjectIndex={activeProjectIndex}
+                  isMobile={isMobile}
+                  shift1={shifts.shift1}
+                  shift2={shifts.shift2}
+                  onCardClick={goToProject}
+                />
               ))}
             </div>
-          )}
-        </motion.div>
+          </div>
+        )}
+
+        {/* Active Project Indicator & Minimal Status Bar */}
+        {total > 1 && (
+          <div className="gallery-bottom-indicator">
+            <div className="container indicator-flex-row">
+              <div className="indicator-project-meta">
+                <span className="indicator-badge">
+                  PROJECT {activeProjectIndex + 1 < 10 ? `0${activeProjectIndex + 1}` : activeProjectIndex + 1} / {total < 10 ? `0${total}` : total}
+                </span>
+                <span className="indicator-project-name">
+                  {projects[activeProjectIndex]?.title}
+                </span>
+              </div>
+
+              {/* Minimal Progress Dots */}
+              <div className="indicator-dots-row">
+                {projects.map((_, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    className={`indicator-dot-pill ${activeProjectIndex === idx ? 'active' : ''}`}
+                    onClick={() => goToProject(idx)}
+                    aria-label={`Jump to project ${idx + 1}`}
+                  />
+                ))}
+              </div>
+
+              {/* Scroll Cue Hint */}
+              <div className="indicator-scroll-cue">
+                <span>{isMobile ? 'Swipe cards' : 'Scroll to stack'}</span>
+                <FaChevronRight className="scroll-cue-icon" />
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

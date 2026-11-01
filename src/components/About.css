@@ -5,13 +5,13 @@
 .about-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 35px;
 }
 
 .about-main {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 22px;
 }
 
 .about-intro h3 {
